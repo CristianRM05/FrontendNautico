@@ -27,7 +27,6 @@ export class LoginComponent {
       next: (response) => {
         // Verifica si la respuesta contiene un token
         if (response.token) {
-          console.log('Token:', response.token); // Descomentar para ver el token en consola
           this.tokenService.setToken(response.token); // Guarda el token en el localStorage
           this.alertService.showAlert('¡Bienvenido! Autenticación exitosa.');
           this.router.navigate(['/dashboard']); // Redirige al dashboard o la página deseada

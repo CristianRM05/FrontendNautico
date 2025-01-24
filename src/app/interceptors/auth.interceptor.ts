@@ -10,6 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.tokenService.getToken();
+    console.log('Token en el interceptor:', token);  // Verifica el valor del token
 
     if (token) {
       request = request.clone({
@@ -21,4 +22,5 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request);
   }
+
 }

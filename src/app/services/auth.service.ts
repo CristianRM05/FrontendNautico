@@ -22,9 +22,8 @@ export class AuthService {
 
   }
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token'); // O usa sessionStorage si prefieres eso
- // Agrega esta línea para depurar
-    return !!token;  // Si hay un token, devuelve true
+    const token = localStorage.getItem('token');
+    return !!token;
   }
 
   // Método para obtener el token (si lo necesitas)

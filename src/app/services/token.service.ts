@@ -15,25 +15,16 @@ export class TokenService {
   isTokenExpired(token: string): boolean {
     try {
       const decodedToken: any = jwtDecode(token);
-      if (!decodedToken || !decodedToken.exp) {
+      if (!decodedToken) {
         return true;
       }
-
-      // Verificación por la fecha de expiración almacenada
-      const tokenData = localStorage.getItem('token');
-      if (tokenData) {
-        const parsedToken = JSON.parse(tokenData);
-        if (new Date().getTime() > parsedToken.expiresAt) {
-          return true;
-        }
-      }
-
-      const expirationTime = decodedToken.exp * 1000;
+      const expirationTime = decodedToken.exp * 1000; // Convertimos a milisegundos
       return new Date().getTime() > expirationTime;
     } catch (e) {
-      return true;
+      return true; // Si hay algún error, consideramos que el token ha expirado
     }
   }
+
 
 
   // Verifica si el token ha expirado llamando al backend
@@ -42,29 +33,34 @@ export class TokenService {
   }
 
   // Guarda el token en localStorage
-  setToken(token: string): void {
-    const expirationTime = new Date().getTime() + 1000 * 60 * 60 * 24; // 24 horas desde ahora
-    let tokenData = {
-      value: token,
-      expiresAt: expirationTime
-    };
-    localStorage.setItem('token', JSON.stringify(tokenData));
-  }
+ setToken(token: string): void {
+  const expirationTime = new Date().getTime() + 1000 * 60 * 60 * 24; // 24 horas desde ahora
+  const tokenData = {
+    value: token,
+    expiresAt: expirationTime
+  };
+  localStorage.setItem('token', JSON.stringify(tokenData));
+}
 
   // Obtiene el token del localStorage
   getToken(): string | null {
-    let tokenData = localStorage.getItem('token');
-    if (tokenData) {
-      let parsedToken = JSON.parse(tokenData);
-      if (new Date().getTime() > parsedToken.expiresAt) {
-        this.removeToken();
-        return null;
-      }
-      return parsedToken.value;
-    }
-    return null;
-  }
+    const tokenData = localStorage.getItem('token');
 
+    if (tokenData) {
+      const parsedToken = JSON.parse(tokenData);
+      const token = parsedToken.value;
+
+      // Verificamos si el token ha expirado
+      if (this.isTokenExpired(token)) {
+        this.removeToken();
+        return null; // Si ha expirado, devolvemos null
+      }
+
+      return token; // Si no ha expirado, devolvemos el token
+    }
+
+    return null; // Si no hay token en localStorage, devolvemos null
+  }
 
   // Elimina el token del localStorage
   removeToken(): void {
