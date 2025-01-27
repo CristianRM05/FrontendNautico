@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {jwtDecode} from 'jwt-decode';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -11,59 +11,44 @@ export class TokenService {
 
   constructor(private http: HttpClient) {}
 
-  // Verifica si el token ha expirado
-  isTokenExpired(token: string): boolean {
-    try {
-      const decodedToken: any = jwtDecode(token);
-      if (!decodedToken) {
-        return true;
-      }
-      const expirationTime = decodedToken.exp * 1000; // Convertimos a milisegundos
-      return new Date().getTime() > expirationTime;
-    } catch (e) {
-      return true; // Si hay algún error, consideramos que el token ha expirado
-    }
-  }
-
-
-
   // Verifica si el token ha expirado llamando al backend
   validateTokenBackend(token: string): Observable<boolean> {
     return this.http.post<boolean>(this.apiUrl, { token });
   }
 
   // Guarda el token en localStorage
- setToken(token: string): void {
-  const expirationTime = new Date().getTime() + 1000 * 60 * 60 * 24; // 24 horas desde ahora
-  const tokenData = {
-    value: token,
-    expiresAt: expirationTime
-  };
-  localStorage.setItem('token', JSON.stringify(tokenData));
-}
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
 
   // Obtiene el token del localStorage
   getToken(): string | null {
-    const tokenData = localStorage.getItem('token');
-
-    if (tokenData) {
-      const parsedToken = JSON.parse(tokenData);
-      const token = parsedToken.value;
-
-      // Verificamos si el token ha expirado
-      if (this.isTokenExpired(token)) {
-        this.removeToken();
-        return null; // Si ha expirado, devolvemos null
-      }
-
-      return token; // Si no ha expirado, devolvemos el token
-    }
-
-    return null; // Si no hay token en localStorage, devolvemos null
+    return localStorage.getItem('token');
   }
 
   // Elimina el token del localStorage
   removeToken(): void {
     localStorage.removeItem('token');
+  }
+
+  // Método para verificar y actualizar el estado del token
+  checkTokenValidity(): Observable<boolean> {
+    const token = this.getToken();
+    if (token) {
+      return this.validateTokenBackend(token).pipe(
+        tap((isValid) => {
+          if (!isValid) {
+            this.removeToken();
+          }
+        }),
+        catchError((error) => {
+          // En caso de error, también eliminamos el token
+          this.removeToken();
+          return of(false);
+        })
+      );
+    } else {
+      return of(false);
+    }
   }
 }
