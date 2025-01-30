@@ -29,5 +29,9 @@ export class GettripsComponent {
       }
     );
   }
+  updateTrip(id: number) {
+    this.router.navigate([`/updatetrip/${id}`]); // Esto redirige al formulario de actualización
+  }
+
 
  }

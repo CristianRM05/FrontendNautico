@@ -7,7 +7,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component'; // Importa tu interceptor
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { UpdateuserComponent } from './components/updateuser/updateuser.component';
@@ -15,6 +15,7 @@ import { CreateshipComponent } from './components/createship/createship.componen
 import { GiveshipsComponent } from './components/giveships/giveships.component';
 import { CreatetripComponent } from './components/createtrip/createtrip.component';
 import { GettripsComponent } from './components/gettrips/gettrips.component';
+import { UpdateshipComponent } from './components/updateship/updateship.component';
 
 
 @NgModule({
@@ -29,14 +30,16 @@ import { GettripsComponent } from './components/gettrips/gettrips.component';
     CreateshipComponent,
     GiveshipsComponent,
     CreatetripComponent,
-    GettripsComponent
+    GettripsComponent,
+    UpdateshipComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [
     {

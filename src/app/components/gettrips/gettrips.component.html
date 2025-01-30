@@ -17,6 +17,9 @@
                   <p class="mb-0"><strong>Organizador:</strong> {{ trip.organizadorName }}</p>
                   <p class="mb-0"><strong>Patrón:</strong> {{ trip.patronName }}</p>
                   <p class="mb-0"><strong>Rol en el viaje:</strong> {{ trip.tripRole }}</p>
+
+                  <button class="btn btn-warning" (click)="updateTrip(trip.idTrip)">Actualizar</button>
+
                 </div>
                 <span class="badge bg-primary">Barco ID: {{ trip.barcoId }}</span>
               </li>

@@ -37,7 +37,7 @@ body {
   color: white;
   background-color: #34495e;
   border-radius: 8px;
-  max-height: 400px;
+
   overflow-y: auto;
 }
 
@@ -60,7 +60,7 @@ body {
 
 /* Estilo para la barra de desplazamiento */
 .scroll-container {
-  max-height: 400px;
+
   overflow-y: auto;
 }
 

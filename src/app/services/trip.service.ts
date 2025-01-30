@@ -20,5 +20,14 @@ export class TripService {
   getTrips(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/obtener`);
   }
+ getTripById(id: number): Observable<any> {
+  return this.http.get(`${this.baseUrl}/obtener/${id}`);
+}
+
+updateTrip(updatedTrip: any): Observable<any> {
+  return this.http.put(`${this.baseUrl}/update/${updatedTrip.idTrip}`, updatedTrip);
+}
+
+
 
 }

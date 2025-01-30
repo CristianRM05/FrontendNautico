@@ -12,6 +12,9 @@
               <p class="card-text"><strong>Amarre:</strong> {{ ship.amarre }}</p>
               <p class="card-text"><strong>Fee:</strong> {{ ship.fee | currency }}</p>
               <button class="btn btn-danger" (click)="deleteShip(ship.id)">Eliminar</button>
+
+              <button [routerLink]="['/updateship', ship.id]" class="btn btn-success">Editar</button>
+
             </div>
           </div>
         </div>

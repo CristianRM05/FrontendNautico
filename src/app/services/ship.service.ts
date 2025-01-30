@@ -23,4 +23,8 @@ export class ShipService {
   deleteShip(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/borrar/${id}`);
   }
+  updateShip(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/update/${id}`, data);
+  }
+
 }
