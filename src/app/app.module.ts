@@ -15,7 +15,6 @@ import { CreateshipComponent } from './components/createship/createship.componen
 import { GiveshipsComponent } from './components/giveships/giveships.component';
 import { CreatetripComponent } from './components/createtrip/createtrip.component';
 import { GettripsComponent } from './components/gettrips/gettrips.component';
-import { DeleteshipComponent } from './deleteship/deleteship.component';
 
 
 @NgModule({
@@ -30,8 +29,8 @@ import { DeleteshipComponent } from './deleteship/deleteship.component';
     CreateshipComponent,
     GiveshipsComponent,
     CreatetripComponent,
-    GettripsComponent,
-    DeleteshipComponent
+    GettripsComponent
+
   ],
   imports: [
     BrowserModule,
