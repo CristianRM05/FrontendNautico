@@ -7,6 +7,7 @@ import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css'],
   standalone: false,
 })
 export class RegisterComponent {
@@ -29,7 +30,7 @@ export class RegisterComponent {
     this.authService.register(this.form).subscribe({
       next: () => {
         this.alertService.showAlert('Registro exitoso. Ahora puedes iniciar sesión.');
-        this.router.navigate(['/login']); // Redirige al login
+        this.router.navigate(['/login']); 
       },
       error: (err) => {
         console.error('Error:', err);

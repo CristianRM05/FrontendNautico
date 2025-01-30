@@ -1,0 +1,82 @@
+/* Contenedor principal con imagen de fondo */
+.login-container {
+  height: 100vh;
+ 
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Tarjeta de login */
+.login-card {
+  max-width: 500px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Fondo semitransparente */
+  border-radius: 15px;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Texto */
+h1, p {
+  color: white;
+}
+
+/* Inputs */
+.form-control-lg {
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  font-size: 1.2rem;
+}
+
+.form-control-lg:focus {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  border: none;
+}
+
+/* Botones */
+.btn-primary {
+  background: #007bff;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.btn-outline-light {
+  border-color: white;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-outline-light:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 20px;
+  }
+}

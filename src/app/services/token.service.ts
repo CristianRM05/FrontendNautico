@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { tap, catchError } from 'rxjs/operators';
 export class TokenService {
   private apiUrl = 'http://localhost:8085/api/auth/validate'; // Cambia esta URL a la de tu backend
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   // Verifica si el token ha expirado llamando al backend
   validateTokenBackend(token: string): Observable<boolean> {
@@ -33,16 +34,17 @@ export class TokenService {
 
   // Método para verificar y actualizar el estado del token
   checkTokenValidity(): Observable<boolean> {
-    const token = this.getToken();
+    let token = this.getToken();
     if (token) {
       return this.validateTokenBackend(token).pipe(
         tap((isValid) => {
           if (!isValid) {
             this.removeToken();
+
           }
         }),
         catchError((error) => {
-          // En caso de error, también eliminamos el token
+
           this.removeToken();
           return of(false);
         })

@@ -1,3 +1,53 @@
+<app-navbar></app-navbar>
+<header class="bg-primary text-white text-center py-5">
+  <h1>Bienvenido, {{ username }}</h1>
+  <p class="lead">Gestiona tus barcos, viajes y perfil desde aquí.</p>
+</header>
 
 
-<p class="text-center">Funciona jeje</p>
+
+
+<div class="container d-flex justify-content-center align-items-center  animate__animated animate__fadeInUp">
+  <div class="row text-center">
+    <!-- Crear Barco -->
+    <div class="col-md-3 mb-4">
+      <a href="/createShip" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-ship fa-3x mb-3"></i>
+          <h5>Crear Barco</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Actualizar Perfil -->
+    <div class="col-md-3 mb-4">
+      <a routerLink="/updateuser" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-user-edit fa-3x mb-3"></i>
+          <h5>Actualizar Perfil</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Crear Viaje -->
+    <div class="col-md-3 mb-4">
+      <a href="/crear-viaje" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-route fa-3x mb-3"></i>
+          <h5>Crear Viaje</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Logout -->
+    <div class="col-md-3 mb-4">
+      <a href="/logout" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-sign-out-alt fa-3x mb-3"></i>
+          <h5>Logout</h5>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+

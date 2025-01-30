@@ -8,6 +8,7 @@ import { AlertService } from '../../services/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
   standalone: false,
 })
 export class LoginComponent {
@@ -29,7 +30,7 @@ export class LoginComponent {
         if (response.token) {
           this.tokenService.setToken(response.token); // Guarda el token en el localStorage
           this.alertService.showAlert('¡Bienvenido! Autenticación exitosa.');
-          this.router.navigate(['/dashboard']); // Redirige al dashboard o la página deseada
+          this.router.navigate(['/dashboard']); 
         } else {
           this.alertService.showAlert('No se recibió un token. Intenta de nuevo.');
         }

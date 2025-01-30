@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <div class="card shadow-sm p-4">
+    <h2 class="text-center mb-4">Actualizar Perfil</h2>
+
+    <form>
+      <!-- Nombre -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="name" name="name" required>
+      </div>
+
+      <!-- Apellido -->
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Apellido</label>
+        <input type="text" id="lastname" class="form-control" [(ngModel)]="lastname" name="lastname" required>
+      </div>
+
+      <!-- Nombre de usuario -->
+      <div class="mb-3">
+        <label for="username" class="form-label">Nombre de usuario</label>
+        <input type="text" id="username" class="form-control" [(ngModel)]="username" name="username" required>
+      </div>
+
+      <!-- Rol (Solo lectura) -->
+      <div class="mb-3">
+        <label for="role" class="form-label">Rol</label>
+        <input type="text" id="role" class="form-control" [(ngModel)]="role" name="role" disabled>
+      </div>
+
+      <!-- Botón de actualizar -->
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" (click)="showModal = true">Actualizar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal de Confirmación -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-alert">
+    <span>¿Estás seguro de que quieres actualizar tus datos?</span><br>
+    <br>
+    <p>Si cambias el nombre de usuario tendras que inciar sesion de nuevo.</p>
+
+
+
+
+    <div class="modal-buttons">
+      <span class="modal-button decline" (click)="showModal = false">Cancelar</span>
+      <button class="modal-button confirm" type="button" (click)="updateUser()">Confirmar</button>
+    </div>
+  </div>
+</div>
+

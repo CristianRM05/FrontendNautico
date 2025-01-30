@@ -1,0 +1,76 @@
+/* Fondo con imagen marítima (usa una URL directa válida) */
+.register-container {
+  background: url('https://static.wixstatic.com/media/dd8494_2ce09732c7724f9b805da7c806f5b90f~mv2.png/v1/fill/w_2816,h_1296,al_c,q_95,usm_0.66_1.00_0.01,enc_avif,quality_auto/fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Caja del formulario con dimensiones adecuadas */
+.register-box {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Título atractivo */
+.register-box h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #0077b6;
+  font-weight: 700;
+}
+
+/* Botón con hover */
+.btn-primary {
+  background-color: #0077b6;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #023e8a;
+}
+
+/* Botón "ya tengo cuenta" */
+.btn-outline-light {
+  color: #0077b6;
+  border: 2px solid #0077b6;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-outline-light:hover {
+  background-color: #0077b6;
+  color: white;
+}
+
+/* Inputs personalizados */
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 2px solid #0077b6;
+}
+
+/* Centrar y mejorar diseño de checkbox */
+.form-check-label {
+  color: #005f73;
+  font-weight: 600;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .register-box {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+}
