@@ -14,6 +14,8 @@ import { UpdateuserComponent } from './components/updateuser/updateuser.componen
 import { CreateshipComponent } from './components/createship/createship.component';
 import { GiveshipsComponent } from './components/giveships/giveships.component';
 import { CreatetripComponent } from './components/createtrip/createtrip.component';
+import { GettripsComponent } from './components/gettrips/gettrips.component';
+import { DeleteshipComponent } from './deleteship/deleteship.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { CreatetripComponent } from './components/createtrip/createtrip.componen
     UpdateuserComponent,
     CreateshipComponent,
     GiveshipsComponent,
-    CreatetripComponent
+    CreatetripComponent,
+    GettripsComponent,
+    DeleteshipComponent
   ],
   imports: [
     BrowserModule,

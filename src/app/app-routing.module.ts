@@ -9,6 +9,7 @@ import { UpdateuserComponent } from './components/updateuser/updateuser.componen
 import { CreateshipComponent } from './components/createship/createship.component';
 import { GiveshipsComponent } from './components/giveships/giveships.component';
 import { CreatetripComponent } from './components/createtrip/createtrip.component';
+import { GettripsComponent } from './components/gettrips/gettrips.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [
   {path:"createShip",component:CreateshipComponent , canActivate: [AuthGuard]},
   {path:"giveShips",component:GiveshipsComponent , canActivate: [AuthGuard]},
   {path:"createTrip",component:CreatetripComponent , canActivate: [AuthGuard]},
+  {path:"giveTrip",component:GettripsComponent , canActivate: [AuthGuard]},
+
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 

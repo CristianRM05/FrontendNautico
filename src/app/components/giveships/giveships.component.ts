@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShipService } from '../../services/ship.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-giveships',
@@ -8,20 +9,33 @@ import { ShipService } from '../../services/ship.service';
   styleUrls: ['./giveships.component.css']
 })
 export class GiveshipsComponent implements OnInit {
-  ships: any[] = [];  // Arreglo para almacenar los barcos
+  ships: any[] = [];
 
-  constructor(private shipService: ShipService) { }
+  constructor(private shipService: ShipService, private alertService:AlertService) { }
 
   ngOnInit(): void {
-    // Llamada al servicio para obtener todos los barcos
     this.shipService.getShips().subscribe(
       (data) => {
         console.log('Barcos Traídos:', data);
-        this.ships = data;  // Almacena la lista de barcos en el arreglo
+        this.ships = data;
       },
       (error) => {
         console.error('Error al obtener los barcos', error);
       }
     );
+  }
+  deleteShip(id: number) {
+    if (confirm('¿Estás seguro de que quieres eliminar este barco?')) {
+      this.shipService.deleteShip(id).subscribe({
+        next: () => {
+          this.alertService.showAlert('Barco eliminado correctamente.');
+          this.ships = this.ships.filter((ship) => ship.id !== id); // Actualizar la lista localmente
+        },
+        error: (err) => {
+          console.error('Error eliminando el barco:', err);
+          this.alertService.showAlert('Error al eliminar el barco.');
+        },
+      });
+    }
   }
 }

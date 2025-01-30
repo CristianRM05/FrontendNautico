@@ -17,7 +17,8 @@ export class TripService {
   }
 
   // Obtener todos los barcos
-  getShips(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/obtener`);  
+  getTrips(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/obtener`);
   }
+
 }

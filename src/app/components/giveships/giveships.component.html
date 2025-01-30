@@ -6,6 +6,7 @@
         <p class="card-text">Matrícula: {{ ship.matricula }}</p>
         <p class="card-text">Amarre: {{ ship.amarre }}</p>
         <p class="card-text">Fee: {{ ship.fee }}</p>
+        <button class="btn btn-danger" (click)="deleteShip(ship.id)">Eliminar</button>
       </div>
     </div>
   </div>
