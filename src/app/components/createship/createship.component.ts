@@ -7,22 +7,49 @@ import { ShipService } from '../../services/ship.service';
 @Component({
   selector: 'app-createship',
   standalone: false,
-
   templateUrl: './createship.component.html',
-  styleUrl: './createship.component.css'
+  styleUrls: ['./createship.component.css']
 })
 export class CreateshipComponent {
 
-  constructor(private shipService:ShipService, private router:Router, private alertService:AlertService) { }
+  // Un conjunto para almacenar los números de amarre ya generados
+  private amarreNumbers: Set<number> = new Set<number>();
+
+  constructor(private shipService: ShipService, private router: Router, private alertService: AlertService) { }
+
   form = {
     name: '',
     matricula: '',
-    amarre: '',
-    fee: '',
-
+    amarre: 0,
+    fee: 0
   };
 
+  // Método para generar un número aleatorio único para amarre
+  generateAmarre() {
+    let randomAmarre;
+    // Generamos un número aleatorio entre 1000 y 9999 hasta que no se repita
+    do {
+      randomAmarre = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+    } while (this.amarreNumbers.has(randomAmarre));
+    this.amarreNumbers.add(randomAmarre); // Guardamos el número generado
+    return randomAmarre;
+  }
+
+  // Método para generar un fee aleatorio entre 150 y 600
+  generateFee() {
+    return Math.floor(Math.random() * (600 - 150 + 1)) + 150;
+  }
+
+  // Método que se llama al inicializar el componente
+  ngOnInit() {
+    // Generamos y asignamos los valores aleatorios de amarre y fee al formulario
+    this.form.amarre = this.generateAmarre();
+    this.form.fee = this.generateFee();
+  }
+
+  // Método de registro
   register() {
+    // Llamamos al servicio para registrar el barco
     this.shipService.register(this.form).subscribe({
       next: () => {
         this.alertService.showAlert('Registro exitoso. Ya has agregado tu barco al club.');
@@ -34,5 +61,4 @@ export class CreateshipComponent {
       },
     });
   }
-
 }

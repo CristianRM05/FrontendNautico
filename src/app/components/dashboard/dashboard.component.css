@@ -1,4 +1,69 @@
-body
-{
-  font-size: 20em;
+/* Contenedor de scroll con mejor diseño */
+.scroll-container {
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Añadir un efecto de sombra en el hover */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones más atractivos */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover sobre botones con bordes redondeados */
+.rounded-pill {
+  border-radius: 50px;
+}
+
+/* Efecto de hover en las tarjetas */
+.hover-shadow {
+  transition: all 0.3s ease-in-out;
+}
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animación para los títulos */
+h5 {
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Añadir más separación en los márgenes */
+.mt-4 {
+  margin-top: 2.5rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 2.5rem !important;
+}
+
+/* Barra de navegación responsiva */
+@media (max-width: 768px) {
+  .col-md-5 {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
 }

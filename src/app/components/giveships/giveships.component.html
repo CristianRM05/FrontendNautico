@@ -1,17 +1,25 @@
-<div *ngIf="ships.length > 0; else noShips">
-  <div *ngFor="let ship of ships">
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">{{ ship.name }}</h5>
-        <p class="card-text">Matrícula: {{ ship.matricula }}</p>
-        <p class="card-text">Amarre: {{ ship.amarre }}</p>
-        <p class="card-text">Fee: {{ ship.fee }}</p>
-        <button class="btn btn-danger" (click)="deleteShip(ship.id)">Eliminar</button>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div *ngIf="ships.length > 0; else noShips">
+        <div *ngFor="let ship of ships">
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{ ship.name }}</h5>
+              <p class="card-text"><strong>Matrícula:</strong> {{ ship.matricula }}</p>
+              <p class="card-text"><strong>Amarre:</strong> {{ ship.amarre }}</p>
+              <p class="card-text"><strong>Fee:</strong> {{ ship.fee | currency }}</p>
+              <button class="btn btn-danger" (click)="deleteShip(ship.id)">Eliminar</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <ng-template #noShips>
+        <p class="text-muted text-center">No hay barcos disponibles.</p>
+      </ng-template>
     </div>
   </div>
 </div>
-
-<ng-template #noShips>
-  <p>No hay barcos disponibles.</p>
-</ng-template>

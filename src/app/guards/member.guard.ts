@@ -20,8 +20,8 @@ export class MemberGuard implements CanActivate {
         if (user.role === 'MEMBER') {
           return true;
         } else {
-          alert('No tienes permisos para acceder a esta página'); // Alerta si no es MEMBER
-          this.router.navigate(['/dashboard']); // Redirige si no es MEMBER
+          alert('No tienes permisos para acceder a esta página');
+          this.router.navigate(['/dashboard']); 
           return false;
         }
       })

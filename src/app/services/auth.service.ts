@@ -17,14 +17,14 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/register`, data);
   }
 
-  
+
 
   // Autenticación (Login)
   authenticate(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/authenticate`, data);
   }
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
+    let token = localStorage.getItem('token');
     return !!token;
   }
 

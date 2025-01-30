@@ -1,28 +1,29 @@
-<div class="container mt-4">
-  <div class="card shadow-lg">
-    <div class="card-header bg-primary text-white">
-      <h4 class="mb-0">Crear Viaje</h4>
-    </div>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <h2 class="text-center text-white mb-4">Crear un nuevo viaje</h2>
+  <div class="card shadow-lg bg-dark text-white">
     <div class="card-body">
       <form (ngSubmit)="register()">
-        <!-- Fecha y Hora  -->
-        <div class="mb-3">
-          <label for="fechaHora" class="form-label">Fecha y Hora</label>
+        <!-- Fecha y Hora (Solo lectura) -->
+        <div class="form-group">
+          <label for="fechaHora">Fecha y Hora</label>
           <input
             type="text"
             id="fechaHora"
-            class="form-control"
+            class="form-control form-control-lg"
             [(ngModel)]="form.fechayHora"
             name="fechayHora"
-            readonly>
+            [readonly]="true"
+            required>
         </div>
 
         <!-- Descripción -->
-        <div class="mb-3">
-          <label for="description" class="form-label">Descripción</label>
+        <div class="form-group mt-3">
+          <label for="description">Descripción</label>
           <textarea
             id="description"
-            class="form-control"
+            class="form-control form-control-lg"
             [(ngModel)]="form.description"
             name="description"
             placeholder="Escribe una descripción..."
@@ -30,23 +31,22 @@
           </textarea>
         </div>
 
-        <!-- ID del Barco -->
-        <div class="mb-3">
-          <label for="shipId" class="form-label">ID del Barco</label>
-          <input
-            type="text"
+        <!-- ID del Barco (con Select) -->
+        <div class="form-group mt-3">
+          <label for="shipId">ID del Barco</label>
+          <select
             id="shipId"
-            class="form-control"
+            class="form-control form-control-lg"
             [(ngModel)]="form.shipId"
             name="shipId"
-            placeholder="Introduce el ID del barco"
             required>
+            <option value="">Selecciona un barco</option>
+            <option *ngFor="let ship of ships" [value]="ship.id">{{ ship.name }}</option>
+          </select>
         </div>
 
         <!-- Botón de envío -->
-        <div class="d-grid">
-          <button type="submit" class="btn btn-success">Crear Viaje</button>
-        </div>
+        <button type="submit" class="btn btn-warning btn-lg btn-block mt-4">Crear Viaje</button>
       </form>
     </div>
   </div>

@@ -25,7 +25,7 @@ export class UpdateuserComponent {
         this.lastname = data.lastname;
         this.role=data.role;
 
-        console.log('Usuario en update:', data);
+  
 
       },
       (error) => {

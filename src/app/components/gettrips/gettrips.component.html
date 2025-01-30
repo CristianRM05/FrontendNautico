@@ -1,1 +1,33 @@
-<p>gettrips works!</p>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Lista de Viajes</h5>
+        </div>
+        <div class="card-body scroll-container">
+          <div *ngIf="trips.length > 0; else noTrips">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let trip of trips">
+                <div>
+                  <h6 class="mb-1"><strong>Descripción:</strong> {{ trip.description }}</h6>
+                  <p class="mb-0"><strong>Fecha y Hora:</strong> {{ trip.fechayHora | date:'dd/MM/yyyy HH:mm' }}</p>
+                  <p class="mb-0"><strong>Organizador:</strong> {{ trip.organizadorName }}</p>
+                  <p class="mb-0"><strong>Patrón:</strong> {{ trip.patronName }}</p>
+                  <p class="mb-0"><strong>Rol en el viaje:</strong> {{ trip.tripRole }}</p>
+                </div>
+                <span class="badge bg-primary">Barco ID: {{ trip.barcoId }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <ng-template #noTrips>
+            <p class="text-muted text-center">No hay viajes registrados.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

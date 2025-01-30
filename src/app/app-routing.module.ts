@@ -19,11 +19,13 @@ const routes: Routes = [
   {path:"logout",component:LogoutComponent , canActivate: [AuthGuard]},
   {path:"updateuser",component:UpdateuserComponent , canActivate: [AuthGuard]},
   {path:"createShip",component:CreateshipComponent , canActivate: [AuthGuard, MemberGuard]},
-  {path:"giveShips",component:GiveshipsComponent , canActivate: [AuthGuard , MemberGuard]},
+  {path:"ships",component:GiveshipsComponent , canActivate: [AuthGuard , MemberGuard]},
   {path:"createTrip",component:CreatetripComponent , canActivate: [AuthGuard, MemberGuard]},
-  {path:"giveTrip",component:GettripsComponent , canActivate: [AuthGuard]},
+  {path:"trip",component:GettripsComponent , canActivate: [AuthGuard]},
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+
 ];
 
 @NgModule({

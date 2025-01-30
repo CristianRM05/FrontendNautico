@@ -1,24 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/home">Inicio</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand nav-link" [routerLink]="['/dashboard']" routerLinkActive="active" aria-current="page">Inicio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- Opciones para 'MEMBER' -->
         <li class="nav-item" *ngIf="role === 'MEMBER'">
-          <a class="nav-link" href="/viajes">Ver Viajes</a>
+          <a class="nav-link" [routerLink]="['/trip']" routerLinkActive="active" aria-current="page">Ver Viajes</a>
         </li>
+        <li class="nav-item" *ngIf="role === 'MEMBER'">
+          <a class="nav-link" [routerLink]="['/ships']" routerLinkActive="active" aria-current="page">Mis Barcos</a>
+        </li>
+        <li class="nav-item" *ngIf="role === 'MEMBER'">
+          <a class="nav-link" [routerLink]="['/createShip']" routerLinkActive="active" aria-current="page">Agregar Barco</a>
+        </li>
+        <li class="nav-item" *ngIf="role === 'MEMBER'">
+          <a class="nav-link" [routerLink]="['/createTrip']" routerLinkActive="active" aria-current="page">Agregar Viaje</a>
+        </li>
+
+        <!-- Opciones para 'ORGANIZATION' -->
         <li class="nav-item" *ngIf="role === 'ORGANIZATION'">
-          <a class="nav-link" href="/gestionar-viajes">Gestionar Viajes</a>
+          <a class="nav-link" [routerLink]="['/gestionar-viajes']" routerLinkActive="active" aria-current="page">Gestionar Viajes</a>
         </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/perfil">{{ username }}</a>
+        <!-- Desplegable con el nombre de usuario -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ username }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item" href="/updateuser">
+                <i class="bi bi-pencil-square"></i> Actualizar Perfil
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="#" (click)="logout()">
+                <i class="bi bi-box-arrow-right"></i> Logout
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-

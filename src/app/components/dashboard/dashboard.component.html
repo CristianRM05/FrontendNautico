@@ -5,66 +5,75 @@
   <p class="lead">Gestiona tus barcos, viajes y perfil desde aquí.</p>
 </header>
 
-<div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp">
-  <div class="row text-center">
-    <!-- Crear Barco - Solo MEMBER -->
-    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
-      <a href="/createShip" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-ship fa-3x mb-3"></i>
-          <h5>Crear Barco</h5>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <!-- Sección de Barcos (Solo para MEMBER) -->
+    <div class="col-md-5 mb-4" *ngIf="role === 'MEMBER'">
+      <div class="card shadow-lg hover-shadow">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Tus Barcos</h5>
         </div>
-      </a>
+        <div class="card-body">
+          <!-- Mostrar lista de barcos -->
+          <div *ngIf="barcos.length > 0; else noBarcos">
+            <ul class="list-group">
+              <li *ngFor="let barco of barcos" class="list-group-item">
+                <strong>ID: {{ barco.id }}</strong> - {{ barco.matricula }}
+              </li>
+            </ul>
+          </div>
+          <ng-template #noBarcos>
+            <p>No tienes barcos registrados.</p>
+          </ng-template>
+        </div>
+        <!-- Botón de "Ver todos los barcos" -->
+        <div class="card-footer text-center">
+          <a href="/ships" class="btn btn-primary rounded-pill">Ver Todos los Barcos</a>
+        </div>
+      </div>
     </div>
 
-    <!-- Ver Barcos - Solo MEMBER -->
-    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
-      <a href="/giveShips" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-ship fa-3x mb-3"></i>
-          <h5>Ver Barcos</h5>
+    <!-- Sección de Viajes (Solo para MEMBER) -->
+    <div class="col-md-5 mb-4" *ngIf="role === 'MEMBER'">
+      <div class="card shadow-lg hover-shadow">
+        <div class="card-header bg-dark text-white">
+          <h5 class="mb-0">Tus Viajes</h5>
         </div>
-      </a>
+        <div class="card-body">
+          <!-- Mostrar lista de viajes -->
+          <div *ngIf="viajes.length > 0; else noViajes">
+            <ul class="list-group">
+              <li *ngFor="let viaje of viajes" class="list-group-item">
+                <strong>ID: {{ viaje.idTrip }}</strong> - <u>Descripción:</u> {{ viaje.description }}
+              </li>
+            </ul>
+          </div>
+          <ng-template #noViajes>
+            <p>No tienes viajes registrados.</p>
+          </ng-template>
+        </div>
+        <!-- Botón de "Ver todos los viajes" -->
+        <div class="card-footer text-center">
+          <a href="/trip" class="btn btn-success rounded-pill">Ver Todos los Viajes</a>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Crear Viaje - Solo MEMBER -->
-    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
-      <a href="/createTrip" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-route fa-3x mb-3"></i>
-          <h5>Crear Viaje</h5>
-        </div>
-      </a>
-    </div>
+  <!-- Botones para agregar barcos y viajes (Solo MEMBER) -->
+  <div class="text-center mt-4" *ngIf="role === 'MEMBER'">
+    <a href="/createShip" class="btn btn-lg btn-outline-primary rounded-pill shadow hover-shadow me-3">
+      <i class="bi bi-pencil-square"></i> Agregar Barco
+    </a>
+    <a href="/createTrip" class="btn btn-lg btn-outline-success rounded-pill shadow hover-shadow">
+      <i class="bi bi-pencil-square"></i> Agregar Viaje
+    </a>
+  </div>
 
-    <!-- Ver Viajes - Solo MEMBER -->
-    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
-      <a href="/giveTrip" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-route fa-3x mb-3"></i>
-          <h5>Ver Viajes</h5>
-        </div>
-      </a>
-    </div>
-
-    <!-- Actualizar Perfil - Solo MEMBER -->
-    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
-      <a routerLink="/updateuser" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-user-edit fa-3x mb-3"></i>
-          <h5>Actualizar Perfil</h5>
-        </div>
-      </a>
-    </div>
-
-    <!-- Logout - Visible siempre -->
-    <div class="col-md-3 mb-4">
-      <a href="/logout" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-sign-out-alt fa-3x mb-3"></i>
-          <h5>Logout</h5>
-        </div>
-      </a>
-    </div>
+  <!-- Botón para gestionar viajes (Solo ORGANIZATION) -->
+  <div class="text-center mt-4" *ngIf="role === 'ORGANIZATION'">
+    <a href="/gestionar-viajes" class="btn btn-lg btn-warning rounded-pill shadow hover-shadow">
+      <i class="fas fa-tasks"></i> Gestionar Viajes
+    </a>
   </div>
 </div>
