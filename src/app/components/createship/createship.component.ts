@@ -30,7 +30,7 @@ export class CreateshipComponent {
       },
       error: (err) => {
         console.error('Error:', err);
-        this.alertService.showAlert('Error al registrar el usuario.');
+        this.alertService.showAlert(err.error);
       },
     });
   }

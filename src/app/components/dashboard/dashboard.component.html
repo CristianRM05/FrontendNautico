@@ -1,16 +1,14 @@
 <app-navbar></app-navbar>
+
 <header class="bg-primary text-white text-center py-5">
   <h1>Bienvenido, {{ username }}</h1>
   <p class="lead">Gestiona tus barcos, viajes y perfil desde aquí.</p>
 </header>
 
-
-
-
-<div class="container d-flex justify-content-center align-items-center  animate__animated animate__fadeInUp">
+<div class="container d-flex justify-content-center align-items-center animate__animated animate__fadeInUp">
   <div class="row text-center">
-    <!-- Crear Barco -->
-    <div class="col-md-3 mb-4">
+    <!-- Crear Barco - Solo MEMBER -->
+    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
       <a href="/createShip" class="text-decoration-none">
         <div class="card p-4 shadow">
           <i class="fas fa-ship fa-3x mb-3"></i>
@@ -19,8 +17,38 @@
       </a>
     </div>
 
-    <!-- Actualizar Perfil -->
-    <div class="col-md-3 mb-4">
+    <!-- Ver Barcos - Solo MEMBER -->
+    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
+      <a href="/giveShips" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-ship fa-3x mb-3"></i>
+          <h5>Ver Barcos</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Crear Viaje - Solo MEMBER -->
+    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
+      <a href="/createTrip" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-route fa-3x mb-3"></i>
+          <h5>Crear Viaje</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Ver Viajes - Solo MEMBER -->
+    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
+      <a href="/giveTrip" class="text-decoration-none">
+        <div class="card p-4 shadow">
+          <i class="fas fa-route fa-3x mb-3"></i>
+          <h5>Ver Viajes</h5>
+        </div>
+      </a>
+    </div>
+
+    <!-- Actualizar Perfil - Solo MEMBER -->
+    <div class="col-md-3 mb-4" *ngIf="role === 'MEMBER'">
       <a routerLink="/updateuser" class="text-decoration-none">
         <div class="card p-4 shadow">
           <i class="fas fa-user-edit fa-3x mb-3"></i>
@@ -29,17 +57,7 @@
       </a>
     </div>
 
-    <!-- Crear Viaje -->
-    <div class="col-md-3 mb-4">
-      <a href="/crear-viaje" class="text-decoration-none">
-        <div class="card p-4 shadow">
-          <i class="fas fa-route fa-3x mb-3"></i>
-          <h5>Crear Viaje</h5>
-        </div>
-      </a>
-    </div>
-
-    <!-- Logout -->
+    <!-- Logout - Visible siempre -->
     <div class="col-md-3 mb-4">
       <a href="/logout" class="text-decoration-none">
         <div class="card p-4 shadow">
@@ -50,4 +68,3 @@
     </div>
   </div>
 </div>
-
