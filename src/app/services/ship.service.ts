@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ShipService {
-  private baseUrl = 'http://localhost:8085/api/barcos'; // URL del backend
+  private baseUrl = 'http://localhost:8085/api/barcos'; 
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -18,7 +18,7 @@ export class ShipService {
 
   // Obtener todos los barcos
   getShips(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/traer`);  // Cambié a un arreglo de barcos
+    return this.http.get<any[]>(`${this.baseUrl}/traer`);
   }
   deleteShip(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/borrar/${id}`);

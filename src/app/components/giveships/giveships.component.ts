@@ -29,7 +29,7 @@ export class GiveshipsComponent implements OnInit {
       this.shipService.deleteShip(id).subscribe({
         next: () => {
           this.alertService.showAlert('Barco eliminado correctamente.');
-          this.ships = this.ships.filter((ship) => ship.id !== id); // Actualizar la lista localmente
+          this.ships = this.ships.filter((ship) => ship.id !== id); 
         },
         error: (err) => {
           console.error('Error eliminando el barco:', err);

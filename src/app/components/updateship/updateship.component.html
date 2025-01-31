@@ -1,26 +1,40 @@
-<div class="container">
-  <h2>Actualizar Barco</h2>
-  <form [formGroup]="shipForm" (ngSubmit)="updateShip()">
-    <div class="form-group">
-      <label for="name">Nombre:</label>
-      <input id="name" type="text" class="form-control" formControlName="name" required />
-    </div>
+<app-navbar></app-navbar>
 
-    <div class="form-group">
-      <label for="matricula">Matrícula:</label>
-      <input id="matricula" type="text" class="form-control" formControlName="matricula" required />
-    </div>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4 rounded-lg w-50">
+    <h2 class="text-center mb-4 text-primary">Actualizar Barco</h2>
 
-    <div class="form-group">
-      <label for="amarre">Amarre:</label>
-      <input id="amarre" type="number" class="form-control" formControlName="amarre" readonly />
-    </div>
+    <form [formGroup]="shipForm" (ngSubmit)="updateShip()">
+      <!-- Nombre -->
+      <div class="mb-3">
+        <label for="name" class="form-label fw-bold">Nombre del Barco</label>
+        <input id="name" type="text" class="form-control rounded-pill shadow-sm" formControlName="name" required />
+      </div>
 
-    <div class="form-group">
-      <label for="fee">Tarifa:</label>
-      <input id="fee" type="number" class="form-control" formControlName="fee" readonly />
-    </div>
+      <!-- Matrícula -->
+      <div class="mb-3">
+        <label for="matricula" class="form-label fw-bold">Matrícula</label>
+        <input id="matricula" type="text" class="form-control rounded-pill shadow-sm" formControlName="matricula" required />
+      </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="shipForm.invalid">Actualizar</button>
-  </form>
+      <!-- Amarre (Solo lectura) -->
+      <div class="mb-3">
+        <label for="amarre" class="form-label fw-bold">Número de Amarre</label>
+        <input id="amarre" type="number" class="form-control rounded-pill shadow-sm bg-light" formControlName="amarre" readonly />
+      </div>
+
+      <!-- Tarifa (Solo lectura) -->
+      <div class="mb-3">
+        <label for="fee" class="form-label fw-bold">Tarifa (€)</label>
+        <input id="fee" type="number" class="form-control rounded-pill shadow-sm bg-light" formControlName="fee" readonly />
+      </div>
+
+      <!-- Botón de actualizar -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm" [disabled]="shipForm.invalid">
+          <i class="fas fa-sync-alt"></i> Actualizar
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

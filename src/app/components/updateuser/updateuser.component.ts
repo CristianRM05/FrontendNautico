@@ -5,40 +5,38 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-updateuser',
   standalone: false,
-
   templateUrl: './updateuser.component.html',
-  styleUrl: './updateuser.component.css'
+  styleUrls: ['./updateuser.component.css']
 })
 export class UpdateuserComponent {
   username: any;
   lastname: any;
   role: any;
   name: any;
-  showModal: boolean = false;
-  constructor(private authService:AuthService, private router:Router) { }
+  showModal: boolean = false; // Asegúrate de que sea 'false' en lugar de 'null'
+
+  constructor(private authService: AuthService, private router: Router) { }
+
   ngOnInit(): void {
     this.authService.getUser().subscribe(
       (data) => {
-
         this.username = data.username;
         this.name = data.name;
         this.lastname = data.lastname;
-        this.role=data.role;
-
-  
-
+        this.role = data.role;
       },
       (error) => {
         console.error('Error al obtener el usuario', error);
       }
     );
   }
+
   showCookieConsent(): void {
-    this.showModal = true;
+    this.showModal = true; // Asigna 'true' para mostrar el modal
   }
 
   closeModal(): void {
-    this.showModal = false;
+    this.showModal = false; // Asigna 'false' para cerrar el modal
   }
 
   updateUser() {
@@ -59,6 +57,4 @@ export class UpdateuserComponent {
       }
     );
   }
-
 }
-

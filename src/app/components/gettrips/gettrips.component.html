@@ -2,26 +2,33 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-header bg-dark text-white">
-          <h5 class="mb-0">Lista de Viajes</h5>
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Lista de Viajes</h4>
         </div>
         <div class="card-body scroll-container">
           <div *ngIf="trips.length > 0; else noTrips">
             <ul class="list-group">
-              <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let trip of trips">
-                <div>
-                  <h6 class="mb-1"><strong>Descripción:</strong> {{ trip.description }}</h6>
-                  <p class="mb-0"><strong>Fecha y Hora:</strong> {{ trip.fechayHora | date:'dd/MM/yyyy HH:mm' }}</p>
-                  <p class="mb-0"><strong>Organizador:</strong> {{ trip.organizadorName }}</p>
-                  <p class="mb-0"><strong>Patrón:</strong> {{ trip.patronName }}</p>
-                  <p class="mb-0"><strong>Rol en el viaje:</strong> {{ trip.tripRole }}</p>
+              <li class="list-group-item d-flex justify-content-between align-items-center trip-item" *ngFor="let trip of trips">
+                <div class="trip-info">
+                  <h5 class="mb-1 text-light"><strong>{{ trip.description }}</strong></h5>
+                  <p class="mb-0"><i class="bi bi-calendar-check"></i> <strong>Fecha:</strong> {{ trip.fechayHora | date:'dd/MM/yyyy HH:mm' }}</p>
+                  <p class="mb-0"><i class="bi bi-person-fill"></i> <strong>Organizador:</strong> {{ trip.organizadorName }}</p>
+                  <p class="mb-0"><i class="bi bi-person-badge"></i> <strong>Patrón:</strong> {{ trip.patronName }}</p>
+                  <p class="mb-0"><i class="bi bi-people-fill"></i> <strong>Rol:</strong> {{ trip.tripRole }}</p>
+                </div>
+                <div class="d-flex flex-column align-items-end">
+                  <span class="badge bg-info p-2">Matrícula: {{ trip.shipMatricula }}</span>
+                  <button class="btn btn-warning btn-sm mt-2" (click)="updateTrip(trip.idTrip)">
+                    <i class="bi bi-pencil-square"></i> Actualizar
+                  </button>
 
-                  <button class="btn btn-warning" (click)="updateTrip(trip.idTrip)">Actualizar</button>
+                  <button class="btn btn-danger btn-sm mt-2" (click)="deleteTrip(trip.idTrip)">
+                    <i class="bi bi-trash"></i> Eliminar
+                  </button>
 
                 </div>
-                <span class="badge bg-primary">Barco ID: {{ trip.barcoId }}</span>
               </li>
             </ul>
           </div>

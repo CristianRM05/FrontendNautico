@@ -30,7 +30,21 @@ export class GettripsComponent {
     );
   }
   updateTrip(id: number) {
-    this.router.navigate([`/updatetrip/${id}`]); // Esto redirige al formulario de actualización
+    this.router.navigate(['/updatetrip', id]);
+  }
+  deleteTrip(id: number) {
+    if (confirm('¿Estás seguro de que quieres eliminar este trip?')) {
+      this.tripervice.deleteTrip(id).subscribe({
+        next: () => {
+          this.alertService.showAlert('Trip eliminado correctamente.');
+          this.router.navigate(['/dashboard']); 
+        },
+        error: (err) => {
+          console.error('Error eliminando el trip:', err);
+          this.alertService.showAlert('Error al eliminar el trip.');
+        },
+      });
+    }
   }
 
 

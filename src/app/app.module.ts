@@ -16,6 +16,7 @@ import { GiveshipsComponent } from './components/giveships/giveships.component';
 import { CreatetripComponent } from './components/createtrip/createtrip.component';
 import { GettripsComponent } from './components/gettrips/gettrips.component';
 import { UpdateshipComponent } from './components/updateship/updateship.component';
+import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { UpdateshipComponent } from './components/updateship/updateship.componen
     GiveshipsComponent,
     CreatetripComponent,
     GettripsComponent,
-    UpdateshipComponent
+    UpdateshipComponent,
+    UpdatetripComponent
 
   ],
   imports: [

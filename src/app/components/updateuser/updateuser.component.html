@@ -1,36 +1,82 @@
-<div class="container mt-4">
-  <div class="card shadow-sm p-4">
-    <h2 class="text-center mb-4">Actualizar Perfil</h2>
+<app-navbar></app-navbar>
 
-    <form>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4 rounded-lg w-50">
+    <h2 class="text-center mb-4 text-primary">Actualizar Perfil</h2>
+
+    <form #profileForm="ngForm">
       <!-- Nombre -->
       <div class="mb-3">
-        <label for="name" class="form-label">Nombre</label>
-        <input type="text" id="name" class="form-control" [(ngModel)]="name" name="name" required>
+        <label for="name" class="form-label fw-bold">Nombre</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control rounded-pill shadow-sm"
+          [(ngModel)]="name"
+          name="name"
+          #nameField="ngModel"
+          required>
+        <div *ngIf="nameField.invalid && nameField.touched" class="invalid-feedback">
+          El nombre es obligatorio.
+        </div>
       </div>
 
       <!-- Apellido -->
       <div class="mb-3">
-        <label for="lastname" class="form-label">Apellido</label>
-        <input type="text" id="lastname" class="form-control" [(ngModel)]="lastname" name="lastname" required>
+        <label for="lastname" class="form-label fw-bold">Apellido</label>
+        <input
+          type="text"
+          id="lastname"
+          class="form-control rounded-pill shadow-sm"
+          [(ngModel)]="lastname"
+          name="lastname"
+          #lastnameField="ngModel"
+          required>
+        <div *ngIf="lastnameField.invalid && lastnameField.touched" class="invalid-feedback">
+          El apellido es obligatorio.
+        </div>
       </div>
 
       <!-- Nombre de usuario -->
       <div class="mb-3">
-        <label for="username" class="form-label">Nombre de usuario</label>
-        <input type="text" id="username" class="form-control" [(ngModel)]="username" name="username" required>
+        <label for="username" class="form-label fw-bold">Nombre de usuario</label>
+        <input
+          type="text"
+          id="username"
+          class="form-control rounded-pill shadow-sm"
+          [(ngModel)]="username"
+          name="username"
+          #usernameField="ngModel"
+          required>
+        <div *ngIf="usernameField.invalid && usernameField.touched" class="invalid-feedback">
+          El usuario es obligatorio.
+        </div>
       </div>
 
       <!-- Rol (Solo lectura) -->
       <div class="mb-3">
-        <label for="role" class="form-label">Rol</label>
-        <input type="text" id="role" class="form-control" [(ngModel)]="role" name="role" disabled>
+        <label for="role" class="form-label fw-bold">Rol</label>
+        <input
+          type="text"
+          id="role"
+          class="form-control rounded-pill shadow-sm bg-light"
+          [(ngModel)]="role"
+          name="role"
+          disabled>
       </div>
 
       <!-- Botón de actualizar -->
+    <!-- Botón de actualizar -->
       <div class="text-center">
-        <button type="button" class="btn btn-primary" (click)="showModal = true">Actualizar</button>
+        <button
+          type="button"
+          class="btn btn-primary rounded-pill px-4 shadow-sm"
+          (click)="showCookieConsent()"
+          [disabled]="profileForm.invalid">
+          <i class="fas fa-sync-alt"></i> Actualizar
+        </button>
       </div>
+
     </form>
   </div>
 </div>
@@ -38,12 +84,9 @@
 <!-- Modal de Confirmación -->
 <div *ngIf="showModal" class="modal-overlay">
   <div class="modal-alert">
-    <span>¿Estás seguro de que quieres actualizar tus datos?</span><br>
-    <br>
-    <p>Si cambias el nombre de usuario tendras que inciar sesion de nuevo.</p>
-
-
-
+    <h4 class="text-center text-primary">Confirmar actualización</h4>
+    <p class="text-center">¿Estás seguro de que quieres actualizar tus datos?</p>
+    <p class="text-danger text-center small">Si cambias el nombre de usuario, tendrás que iniciar sesión nuevamente.</p>
 
     <div class="modal-buttons">
       <span class="modal-button decline" (click)="showModal = false">Cancelar</span>
@@ -51,4 +94,3 @@
     </div>
   </div>
 </div>
-

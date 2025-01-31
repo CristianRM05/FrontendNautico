@@ -2,27 +2,41 @@
 
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div *ngIf="ships.length > 0; else noShips">
-        <div *ngFor="let ship of ships">
-          <div class="card mb-3">
-            <div class="card-body">
-              <h5 class="card-title">{{ ship.name }}</h5>
-              <p class="card-text"><strong>Matrícula:</strong> {{ ship.matricula }}</p>
-              <p class="card-text"><strong>Amarre:</strong> {{ ship.amarre }}</p>
-              <p class="card-text"><strong>Fee:</strong> {{ ship.fee | currency }}</p>
-              <button class="btn btn-danger" (click)="deleteShip(ship.id)">Eliminar</button>
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Lista de Barcos</h4>
+        </div>
+        <div class="card-body scroll-container">
+          <div *ngIf="ships.length > 0; else noShips">
+            <div class="row">
+              <div class="col-md-6 mb-4" *ngFor="let ship of ships">
+                <div class="card ship-card">
+                  <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-boat"></i> {{ ship.name }}</h5>
+                    <p class="mb-1"><i class="bi bi-tag"></i> <strong>Matrícula:</strong> {{ ship.matricula }}</p>
+                    <p class="mb-1"><i class="bi bi-geo-alt"></i> <strong>Amarre:</strong> {{ ship.amarre }}</p>
+                    <p class="mb-1"><i class="bi bi-cash"></i> <strong>Fee:</strong> {{ ship.fee | currency }}</p>
 
-              <button [routerLink]="['/updateship', ship.id]" class="btn btn-success">Editar</button>
-
+                    <div class="d-flex justify-content-between mt-3">
+                      <button class="btn btn-danger btn-sm" (click)="deleteShip(ship.id)">
+                        <i class="bi bi-trash"></i> Eliminar
+                      </button>
+                      <button [routerLink]="['/updateship', ship.id]" class="btn btn-success btn-sm">
+                        <i class="bi bi-pencil-square"></i> Editar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <ng-template #noShips>
+            <p class="text-muted text-center">No hay barcos disponibles.</p>
+          </ng-template>
         </div>
       </div>
-
-      <ng-template #noShips>
-        <p class="text-muted text-center">No hay barcos disponibles.</p>
-      </ng-template>
     </div>
   </div>
 </div>

@@ -3,6 +3,7 @@
     <h2 class="text-center mb-4">Registro en el Club Náutico</h2>
     <form (ngSubmit)="register()" #registerForm="ngForm">
 
+      <!-- Nombre -->
       <div class="mb-3">
         <label for="name" class="form-label">Nombre:</label>
         <input
@@ -10,12 +11,18 @@
           id="name"
           name="name"
           [(ngModel)]="form.name"
+          #name="ngModel"
           required
           class="form-control"
+          [class.is-invalid]="name.invalid && name.touched"
           placeholder="Introduce tu nombre"
         />
+        <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+          El nombre es obligatorio.
+        </div>
       </div>
 
+      <!-- Apellido -->
       <div class="mb-3">
         <label for="lastname" class="form-label">Apellido:</label>
         <input
@@ -23,12 +30,18 @@
           id="lastname"
           name="lastname"
           [(ngModel)]="form.lastname"
+          #lastname="ngModel"
           required
           class="form-control"
+          [class.is-invalid]="lastname.invalid && lastname.touched"
           placeholder="Introduce tu apellido"
         />
+        <div *ngIf="lastname.invalid && lastname.touched" class="invalid-feedback">
+          El apellido es obligatorio.
+        </div>
       </div>
 
+      <!-- Usuario -->
       <div class="mb-3">
         <label for="username" class="form-label">Usuario:</label>
         <input
@@ -36,12 +49,19 @@
           id="username"
           name="username"
           [(ngModel)]="form.username"
+          #username="ngModel"
           required
+          minlength="4"
           class="form-control"
+          [class.is-invalid]="username.invalid && username.touched"
           placeholder="Introduce tu usuario"
         />
+        <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+          El usuario es obligatorio y debe tener al menos 4 caracteres.
+        </div>
       </div>
 
+      <!-- Contraseña -->
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña:</label>
         <input
@@ -49,12 +69,19 @@
           id="password"
           name="password"
           [(ngModel)]="form.password"
+          #password="ngModel"
           required
+          minlength="6"
           class="form-control"
+          [class.is-invalid]="password.invalid && password.touched"
           placeholder="Introduce tu contraseña"
         />
+        <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+          La contraseña es obligatoria y debe tener al menos 6 caracteres.
+        </div>
       </div>
 
+      <!-- Rol -->
       <div class="mb-3">
         <label for="role" class="form-label">Rol:</label>
         <select id="role" name="role" [(ngModel)]="form.role" class="form-select">
@@ -63,13 +90,16 @@
         </select>
       </div>
 
+      <!-- ¿Eres Patrón? -->
       <div class="form-check mb-4">
         <input type="checkbox" id="isPatron" name="isPatron" [(ngModel)]="form.isPatron" class="form-check-input" />
         <label for="isPatron" class="form-check-label">¿Eres Patrón?</label>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+      <!-- Botón de Registro (Deshabilitado si el formulario es inválido) -->
+      <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Registrarse</button>
 
+      <!-- Enlace a Login -->
       <div class="text-center mt-3">
         <a routerLink="/login" class="btn btn-outline-light">¿Ya tienes una cuenta? Inicia sesión</a>
       </div>

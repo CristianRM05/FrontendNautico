@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <h2 class="text-center text-white mb-4">Actualizar Viaje</h2>
+  <div class="card shadow-lg bg-dark text-white">
+    <div class="card-body">
+      <form (ngSubmit)="updateTrip()">
+        <!-- Fecha y Hora -->
+        <div class="form-group">
+          <label for="fechayHora">Fecha y Hora</label>
+          <input
+            type="datetime-local"
+            id="fechayHora"
+            class="form-control form-control-lg"
+            [(ngModel)]="form.fechayHora"
+            name="fechayHora"
+            required>
+        </div>
+
+        <!-- Descripción -->
+        <div class="form-group mt-3">
+          <label for="description">Descripción</label>
+          <textarea
+            id="description"
+            class="form-control form-control-lg"
+            [(ngModel)]="form.description"
+            name="description"
+            placeholder="Escribe una descripción..."
+            required>
+          </textarea>
+        </div>
+
+        <!-- ID del Barco -->
+        <div class="form-group mt-3">
+          <label for="shipId">ID del Barco</label>
+          <select
+            id="shipId"
+            class="form-control form-control-lg"
+            [(ngModel)]="form.shipId"
+            name="shipId"
+            required>
+            <option value="">Selecciona un barco</option>
+            <option *ngFor="let ship of ships" [value]="ship.id">{{ ship.name }}</option>
+          </select>
+        </div>
+
+        <!-- Botón de actualización -->
+        <button type="submit" class="btn btn-warning btn-lg btn-block mt-4">Actualizar Viaje</button>
+      </form>
+    </div>
+  </div>
+</div>
