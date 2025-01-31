@@ -17,7 +17,8 @@ export class UpdatetripComponent implements OnInit {
     description: '',
     shipId: '',
   };
-  ships: any[] = [];  // Lista de barcos disponibles
+  ships: any[] = [];
+  minDateTime: string = '';
 
   constructor(
     private tripService: TripService,
@@ -26,6 +27,18 @@ export class UpdatetripComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+
+  setMinDateTime() {
+    const now = new Date();
+    this.minDateTime = now.toISOString().slice(0, 16);
+  }
+
+  // Verificar si la fecha es futura
+  isFutureDate(): boolean {
+    if (!this.form.fechayHora) return false;
+    const selectedDate = new Date(this.form.fechayHora);
+    return selectedDate > new Date();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -37,15 +50,19 @@ export class UpdatetripComponent implements OnInit {
     });
   }
 
-  // Obtener los detalles del viaje
+  selectedShip: any = null;
+
   getTripDetails(id: string) {
     this.tripService.getTripById(Number(id)).subscribe(
-
       (data) => {
-        console.log('Detalles del viaje traidos:', data),
         this.form.fechayHora = data.fechayHora;
         this.form.description = data.description;
         this.form.shipId = data.barcoId;
+
+        // Buscar el barco en la lista de barcos
+        this.shipService.getShips().subscribe((ships) => {
+          this.selectedShip = ships.find((ship) => ship.id === this.form.shipId);
+        });
       },
       (error) => {
         console.error('Error al obtener los detalles del viaje', error);
@@ -53,6 +70,7 @@ export class UpdatetripComponent implements OnInit {
       }
     );
   }
+
 
   // Obtener la lista de barcos
   getShips() {
@@ -77,7 +95,7 @@ export class UpdatetripComponent implements OnInit {
         },
         (error) => {
           console.error('Error al actualizar el viaje', error);
-          this.alertService.showAlert('Hubo un error al actualizar el viaje');
+          this.alertService.showAlert(error.error);
         }
       );
     }

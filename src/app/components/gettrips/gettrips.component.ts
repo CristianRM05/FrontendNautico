@@ -37,7 +37,7 @@ export class GettripsComponent {
       this.tripervice.deleteTrip(id).subscribe({
         next: () => {
           this.alertService.showAlert('Trip eliminado correctamente.');
-          this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           console.error('Error eliminando el trip:', err);
@@ -46,6 +46,15 @@ export class GettripsComponent {
       });
     }
   }
+  getTripRoleClass(role: string): string {
+    switch (role) {
+      case 'PENDING': return 'bg-warning text-dark';
+      case 'ACCEPTED': return 'bg-primary text-white';
+      case 'FINISHED': return 'bg-success text-white';
+      default: return 'bg-secondary text-white';
+    }
+  }
+
 
 
  }

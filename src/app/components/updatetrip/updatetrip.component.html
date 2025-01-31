@@ -1,52 +1,66 @@
 <app-navbar></app-navbar>
 
-<div class="container mt-5">
-  <h2 class="text-center text-white mb-4">Actualizar Viaje</h2>
-  <div class="card shadow-lg bg-dark text-white">
-    <div class="card-body">
-      <form (ngSubmit)="updateTrip()">
-        <!-- Fecha y Hora -->
-        <div class="form-group">
-          <label for="fechayHora">Fecha y Hora</label>
-          <input
-            type="datetime-local"
-            id="fechayHora"
-            class="form-control form-control-lg"
-            [(ngModel)]="form.fechayHora"
-            name="fechayHora"
-            required>
-        </div>
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="card shadow-lg p-4 rounded-lg w-50">
+    <h2 class="text-center mb-4 text-primary">Actualizar Viaje</h2>
 
-        <!-- Descripción -->
-        <div class="form-group mt-3">
-          <label for="description">Descripción</label>
-          <textarea
-            id="description"
-            class="form-control form-control-lg"
-            [(ngModel)]="form.description"
-            name="description"
-            placeholder="Escribe una descripción..."
-            required>
-          </textarea>
-        </div>
-
-        <!-- ID del Barco -->
-        <div class="form-group mt-3">
-          <label for="shipId">ID del Barco</label>
-          <select
-            id="shipId"
-            class="form-control form-control-lg"
-            [(ngModel)]="form.shipId"
-            name="shipId"
-            required>
-            <option value="">Selecciona un barco</option>
-            <option *ngFor="let ship of ships" [value]="ship.id">{{ ship.name }}</option>
-          </select>
-        </div>
-
-        <!-- Botón de actualización -->
-        <button type="submit" class="btn btn-warning btn-lg btn-block mt-4">Actualizar Viaje</button>
-      </form>
+    <form (ngSubmit)="updateTrip()">
+      <!-- Fecha y Hora -->
+     <!-- Fecha y Hora -->
+    <div class="mb-3">
+      <label for="fechayHora" class="form-label fw-bold">Fecha y Hora</label>
+      <input
+        id="fechayHora"
+        type="datetime-local"
+        class="form-control rounded-pill shadow-sm"
+        [(ngModel)]="form.fechayHora"
+        name="fechayHora"
+        [min]="minDateTime"
+        required />
+      <small *ngIf="!isFutureDate()" class="text-danger">La fecha debe ser futura.</small>
     </div>
+
+
+      <!-- Descripción -->
+      <div class="mb-3">
+        <label for="description" class="form-label fw-bold">Descripción</label>
+        <textarea
+          id="description"
+          class="form-control rounded-pill shadow-sm"
+          [(ngModel)]="form.description"
+          name="description"
+          placeholder="Escribe una descripción..."
+          required>
+        </textarea>
+      </div>
+
+      <!-- Selección del Barco -->
+      <div class="mb-3">
+        <label for="shipId" class="form-label fw-bold">Barco asignado</label>
+        <select
+          id="shipId"
+          class="form-control rounded-pill shadow-sm bg-light"
+          [(ngModel)]="form.shipId"
+          name="shipId"
+          disabled>
+          <option *ngIf="selectedShip" [value]="selectedShip.id">
+            {{ selectedShip.name }} ({{ selectedShip.matricula }})
+          </option>
+        </select>
+      </div>
+
+
+      <!-- Botón de actualizar -->
+   <!-- Botón de actualizar -->
+        <div class="text-center">
+          <button
+            type="submit"
+            class="btn btn-primary rounded-pill px-4 shadow-sm"
+            [disabled]="!form.fechayHora || !form.description || !form.shipId || !isFutureDate()">
+            <i class="fas fa-sync-alt"></i> Actualizar
+          </button>
+        </div>
+
+    </form>
   </div>
 </div>

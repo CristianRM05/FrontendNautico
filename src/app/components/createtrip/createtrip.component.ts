@@ -24,16 +24,17 @@ export class CreatetripComponent implements OnInit {
     private router: Router,
     private alertService: AlertService
   ) {}
-
+  minDateTime: string = '';
   ngOnInit(): void {
-    this.getShips();  // Obtener la lista de barcos al iniciar el componente
+    this.getShips();
+    this.setMinDateTime();
   }
 
   getShips() {
     this.shipService.getShips().subscribe(
       (data) => {
         console.log('Barcos obtenidos:', data);
-        this.ships = data;  // Asignar los barcos a la variable `ships`
+        this.ships = data;
       },
       (error) => {
         console.error('Error al obtener los barcos', error);
@@ -53,5 +54,10 @@ export class CreatetripComponent implements OnInit {
         this.alertService.showAlert(err.error);
       },
     });
+  }
+  setMinDateTime() {
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // Ajuste de zona horaria
+    this.minDateTime = now.toISOString().slice(0, 16);
   }
 }

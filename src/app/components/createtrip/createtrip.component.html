@@ -4,49 +4,65 @@
   <h2 class="text-center text-white mb-4">Crear un nuevo viaje</h2>
   <div class="card shadow-lg bg-dark text-white">
     <div class="card-body">
-      <form (ngSubmit)="register()">
-        <!-- Fecha y Hora (Solo lectura) -->
+      <form #tripForm="ngForm" (ngSubmit)="register()" novalidate>
+
+        <!-- Fecha y Hora -->
         <div class="form-group">
-          <label for="fechaHora">Fecha y Hora</label>
+          <label for="fechaHora" class="fw-bold">Fecha y Hora</label>
           <input
-            type="text"
+            type="datetime-local"
             id="fechaHora"
             class="form-control form-control-lg"
             [(ngModel)]="form.fechayHora"
             name="fechayHora"
-            [readonly]="true"
-            required>
+            #fechaHora="ngModel"
+            required
+            min="{{ minDateTime }}">
+          <div *ngIf="fechaHora.invalid && fechaHora.touched" class="text-danger mt-1">
+            La fecha es obligatoria y debe ser futura.
+          </div>
         </div>
 
         <!-- Descripción -->
         <div class="form-group mt-3">
-          <label for="description">Descripción</label>
+          <label for="description" class="fw-bold">Descripción</label>
           <textarea
             id="description"
             class="form-control form-control-lg"
             [(ngModel)]="form.description"
             name="description"
+            #description="ngModel"
             placeholder="Escribe una descripción..."
             required>
           </textarea>
+          <div *ngIf="description.invalid && description.touched" class="text-danger mt-1">
+            La descripción no puede estar vacía.
+          </div>
         </div>
 
-        <!-- ID del Barco (con Select) -->
+        <!-- Selección del Barco -->
         <div class="form-group mt-3">
-          <label for="shipId">ID del Barco</label>
+          <label for="shipId" class="fw-bold">Selecciona un Barco</label>
           <select
             id="shipId"
             class="form-control form-control-lg"
             [(ngModel)]="form.shipId"
             name="shipId"
+            #shipId="ngModel"
             required>
-            <option value="">Selecciona un barco</option>
+            <option value="" disabled>Selecciona un barco</option>
             <option *ngFor="let ship of ships" [value]="ship.id">{{ ship.name }}</option>
           </select>
+          <div *ngIf="shipId.invalid && shipId.touched" class="text-danger mt-1">
+            Debes seleccionar un barco.
+          </div>
         </div>
 
-        <!-- Botón de envío -->
-        <button type="submit" class="btn btn-warning btn-lg btn-block mt-4">Crear Viaje</button>
+        <!-- Botón de Envío -->
+        <button type="submit" class="btn btn-warning btn-lg btn-block mt-4" [disabled]="tripForm.invalid">
+          <i class="fas fa-ship"></i> Crear Viaje
+        </button>
+
       </form>
     </div>
   </div>
