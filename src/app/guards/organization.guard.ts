@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberGuard implements CanActivate {
+export class OrganizationGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -17,7 +17,7 @@ export class MemberGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.getUser().pipe(
       map(user => {
-        if (user.role === 'MEMBER') {
+        if (user.role === 'ORGANIZATION') {
           return true;
         } else {
           alert('No tienes permisos para acceder a esta página');

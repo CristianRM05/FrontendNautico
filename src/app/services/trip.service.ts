@@ -30,7 +30,9 @@ export class TripService {
 updateTrip(id: string, form: any) {
   return this.http.put(`${this.baseUrl}/update/${id}`, form);
 }
-
+updateTripOrganizador(idTrip: number, idPatron: number): Observable<any> {
+  return this.http.put(`${this.baseUrl}/updateOrganizador/${idTrip}/${idPatron}`, {});
+}
 deleteTrip(id: number): Observable<void> {
   return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
 }

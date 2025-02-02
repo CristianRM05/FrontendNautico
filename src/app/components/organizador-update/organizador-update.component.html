@@ -1,1 +1,12 @@
-<p>organizador-update works!</p>
+<div class="container mt-4">
+  <h2>Actualizar Organizador del Viaje</h2>
+
+  <label for="patron">Selecciona un Patrón:</label>
+  <select id="patron" class="form-select" [(ngModel)]="selectedPatron">
+    <option *ngFor="let patron of patrons" [value]="patron.id">
+      {{ patron.name }} {{ patron.lastname }}
+    </option>
+  </select>
+
+  <button class="btn btn-primary mt-3" (click)="updateOrganizer()">Actualizar Organizador</button>
+</div>

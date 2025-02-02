@@ -16,13 +16,15 @@
                   <p class="mb-0"><i class="bi bi-calendar-check"></i> <strong>Fecha:</strong> {{ trip.fechayHora | date:'dd/MM/yyyy HH:mm' }}</p>
                   <p class="mb-0"><i class="bi bi-person-fill"></i> <strong>Organizador:</strong> {{ trip.organizadorName }}</p>
                   <p class="mb-0"><i class="bi bi-person-badge"></i> <strong>Patrón:</strong> {{ trip.patronName }}</p>
-                  <p class="mb-0"><i class="bi bi-people-fill"></i> <strong>Estado: </strong> <span class="badge p-2" [ngClass]="getTripRoleClass(trip.tripRole)">
-                    {{ trip.tripRole }}
-                  </span>
+                  <p class="mb-0"><i class="bi bi-people-fill"></i> <strong>Estado: </strong>
+                    <span class="badge p-2" [ngClass]="getTripRoleClass(trip.tripRole)">
+                      {{ trip.tripRole }}
+                    </span>
                   </p>
                 </div>
-
-                
+                <button class="btn btn-warning btn-sm" (click)="updateTrip(trip.idTrip)">
+                  <i class="bi bi-pencil"></i> Cambiar Organizador
+                </button>
               </li>
             </ul>
           </div>

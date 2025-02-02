@@ -71,8 +71,33 @@
   </div>
 
   <!-- Botón para gestionar viajes (Solo ORGANIZATION) -->
+
+  <div class="justify-content-center align-items-center" *ngIf="role === 'ORGANIZATION'">
+    <div class="card shadow-lg hover-shadow">
+      <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Viajes Pendientes</h5>
+      </div>
+      <div class="card-body">
+        <!-- Mostrar lista de viajes -->
+        <div *ngIf="viajes2.length > 0; else noViajes">
+          <ul class="list-group">
+            <li *ngFor="let viaje of viajes2" class="list-group-item">
+              <strong>ID: {{ viaje.idTrip }}</strong> - <u>Descripción:</u> {{ viaje.description }}
+            </li>
+          </ul>
+        </div>
+        <ng-template #noViajes>
+          <p>No tienes viajes registrados.</p>
+        </ng-template>
+      </div>
+
+
+
+    </div>
+  </div>
+
   <div class="text-center mt-4" *ngIf="role === 'ORGANIZATION'">
-    <a href="/gestionar-viajes" class="btn btn-lg btn-warning rounded-pill shadow hover-shadow">
+    <a href="/tripOrganizador" class="btn btn-lg btn-warning rounded-pill shadow hover-shadow">
       <i class="fas fa-tasks"></i> Gestionar Viajes
     </a>
   </div>

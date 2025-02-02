@@ -14,6 +14,8 @@ import { GettripsComponent } from './components/gettrips/gettrips.component';
 import { UpdateshipComponent } from './components/updateship/updateship.component';
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { OrganizadorgettripComponent } from './components/organizadorgettrip/organizadorgettrip.component';
+import { OrganizadorUpdateComponent } from './components/organizador-update/organizador-update.component';
+import { OrganizationGuard } from './guards/organization.guard';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -24,11 +26,12 @@ const routes: Routes = [
   {path:"createShip",component:CreateshipComponent , canActivate: [AuthGuard, MemberGuard]},
   {path:"ships",component:GiveshipsComponent , canActivate: [AuthGuard , MemberGuard]},
   {path:"createTrip",component:CreatetripComponent , canActivate: [AuthGuard, MemberGuard]},
-  {path:"trip",component:GettripsComponent , canActivate: [AuthGuard]},
-  {path:"tripOrganizador",component:OrganizadorgettripComponent , canActivate: [AuthGuard]},
+  {path:"trip",component:GettripsComponent , canActivate: [AuthGuard], },
+  {path:"tripOrganizador",component:OrganizadorgettripComponent , canActivate: [OrganizationGuard]},
+  { path: 'update-trip/:idTrip', component: OrganizadorUpdateComponent , canActivate: [OrganizationGuard]},
 
-  { path: 'updateship/:id', component: UpdateshipComponent },
-  { path: 'updatetrip/:id', component: UpdatetripComponent },
+  { path: 'updateship/:id', component: UpdateshipComponent , canActivate: [AuthGuard]},
+  { path: 'updatetrip/:id', component: UpdatetripComponent , canActivate: [AuthGuard]},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 

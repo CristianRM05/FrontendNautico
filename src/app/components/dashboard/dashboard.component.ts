@@ -15,6 +15,7 @@ export class DashboardComponent {
     username: string = ''; // Para mostrar el nombre de usuario
     barcos: any[] = [];
     viajes: any[] = [];
+    viajes2: any[] = [];
     constructor(private authService: AuthService, private tripService:TripService, private shipService:ShipService) {}
   ngOnInit(): void {
     this.authService.getUser().subscribe(
@@ -24,6 +25,7 @@ export class DashboardComponent {
         this.role = data.role;
         this.getBarcos();
         this.getViajes();
+        this.getViajes2();
       },
       (error) => {
         console.error('Error al obtener el usuario', error);
@@ -40,6 +42,11 @@ export class DashboardComponent {
   getViajes() {
     this.tripService.getTrips().subscribe((data: any) => {
       this.viajes = data;
+    });
+  }
+  getViajes2() {
+    this.tripService.gettALLPending().subscribe((data: any) => {
+      this.viajes2 = data;
     });
   }
 }

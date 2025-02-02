@@ -41,5 +41,8 @@ export class AuthService {
   updateUser(updatedUser: any) {
     return this.http.put(`${this.userUrl}/update`, updatedUser);
   }
+  getPatrons(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/patrons`);
+  }
 
 }

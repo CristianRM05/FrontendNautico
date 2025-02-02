@@ -33,4 +33,13 @@ export class OrganizadorgettripComponent {
         default: return 'bg-secondary text-white';
       }
     }
+    updateTrip(tripId: number): void {
+      console.log('Navigating to update-trip with id:', tripId);
+      if (tripId) {
+        this.router.navigate(['/update-trip', tripId]);
+      } else {
+        console.error('Invalid tripId:', tripId);
+      }
+    }
+
 }
