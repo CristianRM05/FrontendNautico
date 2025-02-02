@@ -17,11 +17,11 @@ export class OrganizadorgettripComponent {
     ngOnInit(): void {
         this.tripervice.gettALLPending().subscribe(
         (data) => {
-          console.log('Pemding  traidos', data);
+         
           this.trips = data;
         },
         (error) => {
-          console.error('Error al obtener los trip', error);
+
         }
       );
     }
@@ -34,11 +34,9 @@ export class OrganizadorgettripComponent {
       }
     }
     updateTrip(tripId: number): void {
-      console.log('Navigating to update-trip with id:', tripId);
+
       if (tripId) {
         this.router.navigate(['/update-trip', tripId]);
-      } else {
-        console.error('Invalid tripId:', tripId);
       }
     }
 

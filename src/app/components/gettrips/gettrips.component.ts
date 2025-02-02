@@ -21,22 +21,13 @@ export class GettripsComponent {
     // Llamada al servicio para obtener todos los barcos
     this.tripervice.getTrips().subscribe(
       (data) => {
-        console.log('Trips traidos', data);
         this.trips = data;
       },
       (error) => {
-        console.error('Error al obtener los trip', error);
+        this.alertService.showAlert('Error al obtener los trip'+ error.error);
       }
     );
-    this.tripervice.gettALLPending().subscribe(
-      (data) => {
-        console.log('Pemding  traidos', data);
-   
-      },
-      (error) => {
-        console.error('Error al obtener los trip', error);
-      }
-    );
+  
   }
   updateTrip(id: number) {
     this.router.navigate(['/updatetrip', id]);
@@ -49,8 +40,7 @@ export class GettripsComponent {
           this.router.navigate(['/dashboard']);
         },
         error: (err) => {
-          console.error('Error eliminando el trip:', err);
-          this.alertService.showAlert('Error al eliminar el trip.');
+          this.alertService.showAlert('Error al eliminar el trip.' +err.error);
         },
       });
     }

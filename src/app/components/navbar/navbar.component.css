@@ -1,26 +1,21 @@
-/* Ajusta la altura del navbar y su padding */
+
 .navbar {
   padding: 10px 20px;
 }
-
-/* Espaciado entre los elementos del navbar */
 .navbar-nav .nav-item {
   margin-right: 15px;
 }
-
-/* Alinea correctamente el dropdown del usuario */
 .navbar-nav .dropdown-menu {
   right: 0;
   left: auto;
 }
 
-/* Color del dropdown */
 .dropdown-menu {
   background-color: #343a40;
   border: none;
 }
 
-/* Color del texto en el dropdown */
+
 .dropdown-menu .dropdown-item {
   color: white;
 }
@@ -29,11 +24,10 @@
   background-color: #495057;
 }
 
-/* Línea separadora dentro del dropdown */
 .dropdown-divider {
   border-color: rgba(255, 255, 255, 0.2);
 }
 .nav-link.active {
   font-weight: bold;
-  color: #f1c40f !important; /* Color amarillo para la página activa */
+  color: #f1c40f !important;
 }

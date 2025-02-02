@@ -28,15 +28,14 @@ export class LoginComponent {
       next: (response) => {
         // Verifica si la respuesta contiene un token
         if (response.token) {
-          this.tokenService.setToken(response.token); // Guarda el token en el localStorage
+          this.tokenService.setToken(response.token); 
           this.alertService.showAlert('¡Bienvenido! Autenticación exitosa.');
-          this.router.navigate(['/dashboard']); 
+          this.router.navigate(['/dashboard']);
         } else {
           this.alertService.showAlert('No se recibió un token. Intenta de nuevo.');
         }
       },
       error: (err) => {
-        console.error('Error:', err);
         this.alertService.showAlert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
       },
     });

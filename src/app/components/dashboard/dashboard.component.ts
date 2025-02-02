@@ -11,8 +11,8 @@ import { ShipService } from '../../services/ship.service';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-    role: string = '';  // Variable para almacenar el rol
-    username: string = ''; // Para mostrar el nombre de usuario
+    role: string = '';
+    username: string = '';
     barcos: any[] = [];
     viajes: any[] = [];
     viajes2: any[] = [];
@@ -20,7 +20,7 @@ export class DashboardComponent {
   ngOnInit(): void {
     this.authService.getUser().subscribe(
       (data) => {
-        console.log('Usuario obtenido:', data);
+    
         this.username = data.username;
         this.role = data.role;
         this.getBarcos();
@@ -28,7 +28,6 @@ export class DashboardComponent {
         this.getViajes2();
       },
       (error) => {
-        console.error('Error al obtener el usuario', error);
       }
     );
   }

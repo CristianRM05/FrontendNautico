@@ -30,10 +30,10 @@ export class RegisterComponent {
     this.authService.register(this.form).subscribe({
       next: () => {
         this.alertService.showAlert('Registro exitoso. Ahora puedes iniciar sesión.');
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Error:', err);
+       
         this.alertService.showAlert('Error al registrar el usuario.');
       },
     });

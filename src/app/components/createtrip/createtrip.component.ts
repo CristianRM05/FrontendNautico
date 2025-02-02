@@ -15,7 +15,7 @@ export class CreatetripComponent implements OnInit {
   form = {
     fechayHora: new Date().toISOString().slice(0, 19),
     description: '',
-    shipId: '',  // Esto ahora será un ID seleccionado del <select>
+    shipId: '',
   };
 
   constructor(
@@ -33,11 +33,10 @@ export class CreatetripComponent implements OnInit {
   getShips() {
     this.shipService.getShips().subscribe(
       (data) => {
-        console.log('Barcos obtenidos:', data);
+        
         this.ships = data;
       },
       (error) => {
-        console.error('Error al obtener los barcos', error);
         this.alertService.showAlert('No se pudieron obtener los barcos.');
       }
     );
@@ -50,7 +49,6 @@ export class CreatetripComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
-        console.error('Error:', err);
         this.alertService.showAlert(err.error);
       },
     });

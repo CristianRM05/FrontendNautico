@@ -24,23 +24,21 @@ export class CreateshipComponent {
     fee: 0
   };
 
-  // Método para generar un número aleatorio único para amarre
   generateAmarre() {
     let randomAmarre;
     // Generamos un número aleatorio entre 1000 y 9999 hasta que no se repita
     do {
       randomAmarre = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
     } while (this.amarreNumbers.has(randomAmarre));
-    this.amarreNumbers.add(randomAmarre); // Guardamos el número generado
+    this.amarreNumbers.add(randomAmarre);
     return randomAmarre;
   }
 
-  // Método para generar un fee aleatorio entre 150 y 600
+
   generateFee() {
     return Math.floor(Math.random() * (600 - 150 + 1)) + 150;
   }
 
-  // Método que se llama al inicializar el componente
   ngOnInit() {
     // Generamos y asignamos los valores aleatorios de amarre y fee al formulario
     this.form.amarre = this.generateAmarre();
@@ -56,7 +54,6 @@ export class CreateshipComponent {
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
-        console.error('Error:', err);
         this.alertService.showAlert(err.error);
       },
     });

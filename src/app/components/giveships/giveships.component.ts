@@ -16,11 +16,10 @@ export class GiveshipsComponent implements OnInit {
   ngOnInit(): void {
     this.shipService.getShips().subscribe(
       (data) => {
-        console.log('Barcos Traídos:', data);
         this.ships = data;
       },
       (error) => {
-        console.error('Error al obtener los barcos', error);
+        this.alertService.showAlert('Error al obtener los barcos'+ error.error);
       }
     );
   }
@@ -29,11 +28,11 @@ export class GiveshipsComponent implements OnInit {
       this.shipService.deleteShip(id).subscribe({
         next: () => {
           this.alertService.showAlert('Barco eliminado correctamente.');
-          this.ships = this.ships.filter((ship) => ship.id !== id); 
+          this.ships = this.ships.filter((ship) => ship.id !== id);
         },
         error: (err) => {
-          console.error('Error eliminando el barco:', err);
-          this.alertService.showAlert('Error al eliminar el barco.');
+
+          this.alertService.showAlert('Error al eliminar el barco.'+ err.error);
         },
       });
     }

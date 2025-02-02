@@ -20,12 +20,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.getUser().subscribe(
       (data) => {
-        console.log('Usuario obtenido:', data);
+
         this.username = data.username;
         this.role = data.role;
       },
       (error) => {
-        console.error('Error al obtener el usuario', error);
+
       }
     );
   }

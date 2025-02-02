@@ -24,10 +24,8 @@ export class UpdateuserComponent {
         this.name = data.name;
         this.lastname = data.lastname;
         this.role = data.role;
-      },
-      (error) => {
-        console.error('Error al obtener el usuario', error);
       }
+
     );
   }
 
@@ -52,8 +50,8 @@ export class UpdateuserComponent {
         this.router.navigate(['/dashboard']);
       },
       error => {
-        console.error('Error al actualizar usuario', error);
-        alert('Hubo un error al actualizar el perfil');
+
+        alert('Hubo un error al actualizar el perfil' + error.error);
       }
     );
   }

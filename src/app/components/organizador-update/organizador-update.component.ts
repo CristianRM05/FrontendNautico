@@ -25,13 +25,13 @@ export class OrganizadorUpdateComponent {
   ) {}
 
   ngOnInit(): void {
-    // Obtener la ID del viaje desde la URL
+    
     this.idTrip = Number(this.route.snapshot.paramMap.get('idTrip'));
 
     // Cargar la lista de patrones
     this.userService.getPatrons().subscribe((data) => {
       this.patrons = data;
-      console.log('Patrones:', this.patrons);
+
     });
   }
 

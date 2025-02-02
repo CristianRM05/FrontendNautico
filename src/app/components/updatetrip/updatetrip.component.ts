@@ -65,7 +65,7 @@ export class UpdatetripComponent implements OnInit {
         });
       },
       (error) => {
-        console.error('Error al obtener los detalles del viaje', error);
+  
         this.alertService.showAlert('No se pudo obtener el viaje');
       }
     );
@@ -79,7 +79,7 @@ export class UpdatetripComponent implements OnInit {
         this.ships = data;
       },
       (error) => {
-        console.error('Error al obtener los barcos', error);
+
         this.alertService.showAlert('No se pudieron obtener los barcos');
       }
     );
@@ -94,7 +94,7 @@ export class UpdatetripComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         },
         (error) => {
-          console.error('Error al actualizar el viaje', error);
+
           this.alertService.showAlert(error.error);
         }
       );

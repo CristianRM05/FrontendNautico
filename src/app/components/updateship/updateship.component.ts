@@ -56,7 +56,7 @@ export class UpdateshipComponent implements OnInit {
           this.router.navigate(['/dashboard']); // Redirige a la página principal
         },
         error: err => {
-          console.error('Error al actualizar el barco:', err);
+
           alert('Error al actualizar el barco');
         }
       });
