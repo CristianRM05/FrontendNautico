@@ -28,6 +28,15 @@ export class GettripsComponent {
         console.error('Error al obtener los trip', error);
       }
     );
+    this.tripervice.gettALLPending().subscribe(
+      (data) => {
+        console.log('Pemding  traidos', data);
+   
+      },
+      (error) => {
+        console.error('Error al obtener los trip', error);
+      }
+    );
   }
   updateTrip(id: number) {
     this.router.navigate(['/updatetrip', id]);
@@ -49,7 +58,6 @@ export class GettripsComponent {
   getTripRoleClass(role: string): string {
     switch (role) {
       case 'PENDING': return 'bg-warning text-dark';
-      case 'ACCEPTED': return 'bg-primary text-white';
       case 'FINISHED': return 'bg-success text-white';
       default: return 'bg-secondary text-white';
     }

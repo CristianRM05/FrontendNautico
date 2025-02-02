@@ -13,6 +13,7 @@ import { CreatetripComponent } from './components/createtrip/createtrip.componen
 import { GettripsComponent } from './components/gettrips/gettrips.component';
 import { UpdateshipComponent } from './components/updateship/updateship.component';
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
+import { OrganizadorgettripComponent } from './components/organizadorgettrip/organizadorgettrip.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
   {path:"ships",component:GiveshipsComponent , canActivate: [AuthGuard , MemberGuard]},
   {path:"createTrip",component:CreatetripComponent , canActivate: [AuthGuard, MemberGuard]},
   {path:"trip",component:GettripsComponent , canActivate: [AuthGuard]},
+  {path:"tripOrganizador",component:OrganizadorgettripComponent , canActivate: [AuthGuard]},
+
   { path: 'updateship/:id', component: UpdateshipComponent },
   { path: 'updatetrip/:id', component: UpdatetripComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },

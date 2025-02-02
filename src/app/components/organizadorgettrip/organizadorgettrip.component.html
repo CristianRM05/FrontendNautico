@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h4 class="mb-0">Lista de Viajes</h4>
+        </div>
+        <div class="card-body scroll-container">
+          <div *ngIf="trips.length > 0; else noTrips">
+            <ul class="list-group">
+              <li class="list-group-item d-flex justify-content-between align-items-center trip-item" *ngFor="let trip of trips">
+                <div class="trip-info">
+                  <h5 class="mb-1 text-light"><strong>{{ trip.description }}</strong></h5>
+                  <p class="mb-0"><i class="bi bi-calendar-check"></i> <strong>Fecha:</strong> {{ trip.fechayHora | date:'dd/MM/yyyy HH:mm' }}</p>
+                  <p class="mb-0"><i class="bi bi-person-fill"></i> <strong>Organizador:</strong> {{ trip.organizadorName }}</p>
+                  <p class="mb-0"><i class="bi bi-person-badge"></i> <strong>Patrón:</strong> {{ trip.patronName }}</p>
+                  <p class="mb-0"><i class="bi bi-people-fill"></i> <strong>Estado: </strong> <span class="badge p-2" [ngClass]="getTripRoleClass(trip.tripRole)">
+                    {{ trip.tripRole }}
+                  </span>
+                  </p>
+                </div>
+
+                
+              </li>
+            </ul>
+          </div>
+
+          <ng-template #noTrips>
+            <p class="text-muted text-center">No hay viajes registrados.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

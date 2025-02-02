@@ -17,6 +17,8 @@ import { CreatetripComponent } from './components/createtrip/createtrip.componen
 import { GettripsComponent } from './components/gettrips/gettrips.component';
 import { UpdateshipComponent } from './components/updateship/updateship.component';
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
+import { OrganizadorgettripComponent } from './components/organizadorgettrip/organizadorgettrip.component';
+import { OrganizadorUpdateComponent } from './components/organizador-update/organizador-update.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { UpdatetripComponent } from './components/updatetrip/updatetrip.componen
     CreatetripComponent,
     GettripsComponent,
     UpdateshipComponent,
-    UpdatetripComponent
+    UpdatetripComponent,
+    OrganizadorgettripComponent,
+    OrganizadorUpdateComponent
 
   ],
   imports: [
@@ -41,7 +45,7 @@ import { UpdatetripComponent } from './components/updatetrip/updatetrip.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule
   ],
   providers: [
     {

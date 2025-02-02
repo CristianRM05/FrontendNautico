@@ -20,6 +20,9 @@ export class TripService {
   getTrips(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/obtener`);
   }
+  gettALLPending(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/pending`);
+  }
  getTripById(id: number): Observable<any> {
   return this.http.get(`${this.baseUrl}/obtener/${id}`);
 }
